@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "FclubProject", "FclubProject\FclubProject.dtproj", "{362E3CCE-681F-4371-8D2C-900E13C86041}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{362E3CCE-681F-4371-8D2C-900E13C86041}.Development|Default.ActiveCfg = Development
+		{362E3CCE-681F-4371-8D2C-900E13C86041}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {226A53B3-CAB9-4A5A-9B7D-A3A0482ABEB3}
+	EndGlobalSection
+EndGlobal
