@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="_admin"
+  DTS:DTSID="{9429BDD3-810B-45A3-89DE-C4DBE97F7330}"
+  DTS:CreationName="ODBC">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="uid=admin;Driver={Driver do Microsoft Access (*.mdb)};dbq=C:\Fclub_DB\fclub_safe.mdb;defaultdir=C:\Fclub_DB;driverid=25;fil=MS Access;filedsn=C:\Fclub_DB\fclub_safe.mdb.dsn;maxbuffersize=2048;maxscanrows=8;pagetimeout=5;safetransactions=0;threads=3;usercommitsync=Yes;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
