@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="fclub_safe"
+  DTS:DTSID="{D96F8C23-7039-4A56-8FB3-1A9A66DB7DC3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=C:\Fclub_DB\fclub_safe.mdb;Provider=Microsoft.Jet.OLEDB.4.0;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
