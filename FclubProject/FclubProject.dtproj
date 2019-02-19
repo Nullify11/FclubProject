@@ -26,15 +26,15 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-IJ978D0</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAD7ApdOlzS0aIxVQR8xMNcQAAAAACAAAAAAAQZgAAAAEAACAAAAA6Z6qHlHTsispa39Op4CpiSR/EfLQl6PfgGqVv/YWJmQAAAAAOgAAAAAIAACAAAADUJgmcLXpUv/YlyojK1+YBP0ZXQ1fbFZeC0x91W6PtbJAAAADTmku3Wp4avk0ALAPq2bhQQ9GJPwvR3BUckms+8TiVyD5fsfk43toeGLoOc8isOpUEtSSNV9elbczX4QsQO8fEyk/clvHyh4mMSMZxN5IQ9E6YVX3u6BA0+iraihCo52XerfJiHM3VqYRsAyi9dkMq5RBcdzbmVh3U9JOoxskSvUaSMIcnUw0bJKG/KhO6oJxAAAAAOEzc4RDhB6ogyvO/Ad3c9yqKNDHnWGXi+31eCyEoU0HbKqfsBaOMNk3uj9iNuj4pZKZyIeUXj+bjWfp+u2VWyw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAw+HgbEmUIka6SnVqh0puaQAAAAACAAAAAAAQZgAAAAEAACAAAADp12oYuS98AmG2MkTjn/ytFQlYs7SLLtLQxKCg0iG8CAAAAAAOgAAAAAIAACAAAAD+Wx0BYDyzKElgaTL8kBssA3mULu8O5Y0GUhAk4AOqf5AAAAAXmktzxhg5wacHMT1cVRTrSpotgKU4hi3FhW1JRG20n9AaMNtdjr1TbnHlu06VcMmesqTOT/bZXKeG2hU4Wz1x/cfyBW4UWGhyAdCu1sFE5BL5fKCBSZp/DI5mCNSnUpQRUskvai+an25PyZz7jyVYl4wWNhDXe+racjqtMZaJtpiCnhAywYQqeQRLVSPy+LFAAAAAU/Tp2egNMsrU2gama+9rQvTCyUwddC9vFHjWbV85ha8jAaXRALNRfRV73+fLxQhbFf59vKqRAMaFpfU32VUF5A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SaleFact.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="localhost.FClub_DW.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="fclub_safe.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="Access connection.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -126,7 +126,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.ConnectionString">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -137,11 +137,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=C:\Fclub_DB\fclub_safe.mdb;Provider=Microsoft.Jet.OLEDB.4.0;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Driver={Driver do Microsoft Access (*.mdb)};dbq=C:\Fclub_DB\fclub_safe.mdb;defaultdir=C:\Fclub_DB;driverid=25;fil=MS Access;filedsn=C:\Fclub_DB\fclub_safe.mdb.dsn;maxbuffersize=2048;maxscanrows=8;pagetimeout=5;safetransactions=0;threads=3;usercommitsync=Yes;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -155,7 +155,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.Password">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -169,7 +169,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -184,7 +184,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -195,11 +195,10 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Fclub_DB\fclub_safe.mdb</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.fclub_safe.UserName">
+            <SSIS:Parameter SSIS:Name="CM.Access connection.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -215,16 +214,16 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="SaleFact.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{3316465F-AF32-4AF4-A134-0A802340A4A8}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{4F6198FB-6A6C-4170-AB62-401558239B98}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SaleFact</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{61599137-B400-469D-8D37-3F3BFA4FCF7D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2F63520A-235C-459A-B964-99346CE88AC6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
