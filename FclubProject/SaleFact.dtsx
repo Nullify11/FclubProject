@@ -11,8 +11,8 @@
   DTS:LocaleID="1030"
   DTS:ObjectName="SaleFact"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{C0B19C22-E6AD-4A0D-AFB7-DFF4F27D649D}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{F1608F21-99C4-4A57-A550-2BE54D639144}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -35,6 +35,7 @@
               refId="Package\Data Flow Task\Access Source"
               componentClassID="Attunity.SSISODBCSrc"
               description="ODBC Source"
+              localeId="1033"
               name="Access Source"
               usesDispositions="true"
               version="7">
@@ -255,8 +256,8 @@
                       refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimeID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
-                      errorRowDisposition="IgnoreFailure"
-                      length="50"
+                      errorRowDisposition="FailComponent"
+                      length="8"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimeID]"
                       name="TimeID"
                       truncationRowDisposition="FailComponent">
@@ -265,21 +266,21 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},12,8)</property>
+                          name="Expression">[REPLACE]([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},12,8),":","")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">SUBSTRING(timestamp,12,8)</property>
+                          name="FriendlyExpression">REPLACE(SUBSTRING(timestamp,12,8),":","")</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
-                      errorRowDisposition="IgnoreFailure"
-                      length="50"
+                      errorRowDisposition="FailComponent"
+                      length="10"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]"
                       name="DateID"
                       truncationRowDisposition="FailComponent">
@@ -288,13 +289,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},7,4) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},4,2) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},1,2))</property>
+                          name="Expression">[REPLACE](([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},5,6) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},1,4)),"-","")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(SUBSTRING(timestamp,7,4) + SUBSTRING(timestamp,4,2) + SUBSTRING(timestamp,1,2))</property>
+                          name="FriendlyExpression">REPLACE((SUBSTRING(timestamp,5,6) + SUBSTRING(timestamp,1,4)),"-","")</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -330,6 +331,7 @@
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
+              localeId="1033"
               name="OLE DB Destination"
               usesDispositions="true"
               version="4">
@@ -400,14 +402,14 @@
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TimeID]"
                       cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedLength="8"
                       cachedName="TimeID"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeID]"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimeID]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateID]"
                       cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedLength="10"
                       cachedName="DateID"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]" />
