@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-68EFA3R"
   DTS:CreatorName="DESKTOP-68EFA3R\Nicklas HJ"
-  DTS:DTSID="{4F6198FB-6A6C-4170-AB62-401558239B98}"
+  DTS:DTSID="{AB2BE9DF-15C6-4883-86C6-C91F8BB1CDBC}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.1100.123"
   DTS:LocaleID="1030"
   DTS:ObjectName="SaleFact"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{B404B1B0-C498-4868-9722-7140F9FA4A87}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{F1608F21-99C4-4A57-A550-2BE54D639144}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -21,7 +21,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{5F72AAD9-0EDD-4808-974D-121F4049B834}"
+      DTS:DTSID="{45B2838B-2ED7-4FC0-9D94-6CD712968DDC}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
@@ -35,6 +35,7 @@
               refId="Package\Data Flow Task\Access Source"
               componentClassID="Attunity.SSISODBCSrc"
               description="ODBC Source"
+              localeId="1033"
               name="Access Source"
               usesDispositions="true"
               version="7">
@@ -89,7 +90,7 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Access Source.Connections[ODBCConnection]"
-                  connectionManagerID="{34B92A88-A622-4E0B-B6B2-31E877918BBC}:external"
+                  connectionManagerID="{84633109-137E-4FB1-816C-A093BF9D2998}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Access connection]"
                   description="The ODBC runtime connection used to access the database."
                   name="ODBCConnection" />
@@ -127,8 +128,7 @@
                       name="room_id" />
                     <outputColumn
                       refId="Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       externalMetadataColumnId="Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].ExternalColumns[timestamp]"
                       length="50"
                       lineageId="Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]"
@@ -236,8 +236,7 @@
                   <inputColumns>
                     <inputColumn
                       refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[timestamp]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="timestamp"
                       lineageId="Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]" />
@@ -255,9 +254,10 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimeID]"
-                      dataType="i4"
+                      dataType="wstr"
                       errorOrTruncationOperation="Computation"
-                      errorRowDisposition="IgnoreFailure"
+                      errorRowDisposition="FailComponent"
+                      length="8"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TimeID]"
                       name="TimeID"
                       truncationRowDisposition="FailComponent">
@@ -266,20 +266,21 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},12,8)</property>
+                          name="Expression">[REPLACE]([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},12,8),":","")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">SUBSTRING(timestamp,12,8)</property>
+                          name="FriendlyExpression">REPLACE(SUBSTRING(timestamp,12,8),":","")</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]"
-                      dataType="i4"
+                      dataType="wstr"
                       errorOrTruncationOperation="Computation"
-                      errorRowDisposition="IgnoreFailure"
+                      errorRowDisposition="FailComponent"
+                      length="10"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]"
                       name="DateID"
                       truncationRowDisposition="FailComponent">
@@ -288,13 +289,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},7,4) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},4,2) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},1,2))</property>
+                          name="Expression">[REPLACE](([SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},5,6) + [SUBSTRING](#{Package\Data Flow Task\Access Source.Outputs[ODBC Source Output].Columns[timestamp]},1,4)),"-","")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(SUBSTRING(timestamp,7,4) + SUBSTRING(timestamp,4,2) + SUBSTRING(timestamp,1,2))</property>
+                          name="FriendlyExpression">REPLACE((SUBSTRING(timestamp,5,6) + SUBSTRING(timestamp,1,4)),"-","")</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -330,6 +331,7 @@
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
+              localeId="1033"
               name="OLE DB Destination"
               usesDispositions="true"
               version="4">
@@ -407,7 +409,7 @@
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateID]"
                       cachedDataType="wstr"
-                      cachedLength="8"
+                      cachedLength="10"
                       cachedName="DateID"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DateID]" />
@@ -458,11 +460,13 @@
                       name="ProductID" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="15"
                       name="DateID" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeID]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="15"
                       name="TimeID" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RoomID]"
@@ -530,7 +534,7 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="150.666666666667,42"
+          Size="151,42"
           Id="Package\Data Flow Task"
           TopLeft="90,62" />
       </GraphLayout>
@@ -542,20 +546,20 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
+          Size="154,42"
           Id="Package\Data Flow Task\Derived Column"
-          TopLeft="41.1666677221656,117.400000976324" />
+          TopLeft="268,172" />
         <NodeLayout
-          Size="170.666666666667,42"
+          Size="171,42"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="36.1666677221656,211.400000976324" />
+          TopLeft="263,266" />
         <NodeLayout
           Size="146,42"
           Id="Package\Data Flow Task\Access Source"
-          TopLeft="44.1666677221656,26.4000009763241" />
+          TopLeft="271,81" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[ODBC Source Output]"
-          TopLeft="117.833334388832,68.4000009763241">
+          TopLeft="344.5,123">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -577,18 +581,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="120.000001055499,160.066667642991">
+          TopLeft="346.75,214">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.3333333333333"
+              EndConnector="0,52"
               Start="0,0"
-              End="0,43.8333333333333">
+              End="0,44.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.8333333333333" />
+                    End="0,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
