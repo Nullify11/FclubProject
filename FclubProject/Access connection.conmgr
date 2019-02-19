@@ -1,7 +1,7 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="Access connection"
-  DTS:DTSID="{34B92A88-A622-4E0B-B6B2-31E877918BBC}"
+  DTS:DTSID="{84633109-137E-4FB1-816C-A093BF9D2998}"
   DTS:CreationName="ODBC">
   <DTS:ObjectData>
     <DTS:ConnectionManager
